@@ -64,11 +64,11 @@ function onDoneEditingMovieNote(event)
     var noteText = elem.value.replace(/&/g, '&amp;').replace(/</g, '&lt;');
     if (noteText == '') {
         noteText = defaultNote;
-		// if edit box is empty, remove any existing note from storage
-		removeNote(title);
+        // if edit box is empty, remove any existing note from storage
+        removeNote(title);
 	} else {
-		// Save the note
-		saveNote(title, noteText);
+        // Save the note
+        saveNote(title, noteText);
 	}
 
     // Replace the edit box with a regular <span> of text
@@ -121,7 +121,7 @@ function loadNotes(movies)
 // remove any existing note for the title
 function removeNote(movieTitle)
 {
-	chrome.storage.sync.remove(movieTitle);
+    chrome.storage.sync.remove(movieTitle);
 }
 
 function saveNote(movieTitle, note)
