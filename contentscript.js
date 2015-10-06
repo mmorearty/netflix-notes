@@ -62,11 +62,14 @@ function onDoneEditingMovieNote(event)
     }
 
     var noteText = elem.value.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    if (noteText == '')
+    if (noteText == '') {
         noteText = defaultNote;
-
-    // Save the note
-    saveNote(title, noteText);
+        // if edit box is empty, remove any existing note from storage
+        removeNote(title);
+    } else {
+        // Save the note
+        saveNote(title, noteText);
+    }
 
     // Replace the edit box with a regular <span> of text
     setNoteText(elem, noteText);
@@ -113,6 +116,12 @@ function loadNotes(movies)
             setNoteText(movies[movieTitle], movieNote);
         }
     });
+}
+
+// remove any existing note for the title
+function removeNote(movieTitle)
+{
+    chrome.storage.sync.remove(movieTitle);
 }
 
 function saveNote(movieTitle, note)
