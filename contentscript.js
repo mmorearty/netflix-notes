@@ -66,10 +66,10 @@ function onDoneEditingMovieNote(event)
         noteText = defaultNote;
         // if edit box is empty, remove any existing note from storage
         removeNote(title);
-	} else {
+    } else {
         // Save the note
         saveNote(title, noteText);
-	}
+    }
 
     // Replace the edit box with a regular <span> of text
     setNoteText(elem, noteText);
